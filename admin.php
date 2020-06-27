@@ -125,11 +125,12 @@ if($_GET['a'] == 'invitation_code_add_account'){
         response(1,"登录已失效");
     }
     $email=$_POST['email'];
+    $sku=$_POST['sku'];
     if(is_email($email)){
         $conn = mysql_conn();
         $code = get_rand_number($admin['invitation_code_num']);
         $time = time();
-        $result = mysqli_query($conn,"INSERT INTO `invitation_code`(`code`, `create_time`, `update_time`, `status`, `email`) VALUES ('$code',$time,$time, 1,'$email')");
+        $result = mysqli_query($conn,"INSERT INTO `invitation_code`(`code`, `create_time`, `update_time`, `status`, `email`,`sku`) VALUES ('$code',$time,$time, 1,'$email','$sku')");
         if(!empty($result)){
             response(0,'添加成功');
         }else{
