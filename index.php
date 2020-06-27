@@ -19,7 +19,7 @@ if($is_invitation_code){
 	if($invitation_code['status'] != 0){
 		response(1,'邀请码已被使用');
 	}
-	if($invitation_code['sku'] != $_POST['sku_id']){
+	if($invitation_code['sku'] != $_POST['sku_id'] && $invitation_code['sku']!='all'){
 		response(1,'邀请码与许可证不符');
 	}
 }

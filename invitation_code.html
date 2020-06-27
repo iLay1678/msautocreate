@@ -41,6 +41,7 @@
                <label class="layui-form-label">许可证</label>
             <div class="layui-input-block">
               <select name="sku" lay-verify="" id="sku">
+                  <option value="all">通用</option>
   <?php foreach($sku_id as $k => $v){ ?>
                         <option value="<?php echo $v['sku_id'];?>"><?php echo $v['title'];?></option>
                         <?php } ?>

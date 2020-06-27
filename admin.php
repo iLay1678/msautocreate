@@ -75,13 +75,18 @@ if($_GET['a'] == 'invitation_code_list'){
             $data[$k]['accountstatus']=accountenable($v['email'],$token);
             
         }
-        $data[$k]['sku_name']=array_values(array_filter($sku_id, function($item) use($v){ 
+        if($v['sku']=='all'){
+           $data[$k]['sku_name']='通用'; 
+        }else{
+            $data[$k]['sku_name']=array_values(array_filter($sku_id, function($item) use($v){ 
                  if($item['sku_id']!=$v['sku']){
                      return false;
                  }else{
                      return true;
                  }
             }))[0]['title'];
+        }
+        
     }
     $count = mysqli_fetch_assoc(mysqli_query($conn,"select count(*) as `count` from invitation_code where $where"));
     response(0,"获取邀请码列表成功",$data,$count['count']);
